@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio &bull; Django Fullstack Starter{% endblock %}
+
+{% block content %}
+<div class="space-y-10 max-w-6xl mx-auto">
+
+    <!-- Hero Section -->
+    <div class="hero bg-base-100 rounded-3xl p-8 md:p-12 shadow-sm border border-base-300">
+        <div class="hero-content flex-col lg:flex-row-reverse gap-8">
+            <div class="flex flex-col gap-3 max-w-sm w-full">
+                <!-- Live Tech Badges -->
+                <div class="stats stats-vertical shadow border border-base-200 bg-base-200/50">
+                    <div class="stat py-3 px-4">
+                        <div class="stat-title text-xs">Backend Engine</div>
+                        <div class="stat-value text-lg text-primary flex items-center justify-between">
+                            Django 5.2 <span class="badge badge-sm badge-outline">Python 3.12</span>
+                        </div>
+                    </div>
+                    <div class="stat py-3 px-4">
+                        <div class="stat-title text-xs">Frontend Architecture</div>
+                        <div class="stat-value text-lg text-secondary flex items-center justify-between">
+                            HTMX 2.0 + Alpine.js <span class="badge badge-sm badge-secondary">Server-driven</span>
+                        </div>
+                    </div>
+                    <div class="stat py-3 px-4">
+                        <div class="stat-title text-xs">UI Component System</div>
+                        <div class="stat-value text-lg text-accent flex items-center justify-between">
+                            DaisyUI + Tailwind <span class="badge badge-sm badge-accent">7+ Temas</span>
+                        </div>
+                    </div>
+                    <div class="stat py-3 px-4">
+                        <div class="stat-title text-xs">AI Agents Readiness</div>
+                        <div class="stat-value text-lg text-success flex items-center justify-between">
+                            24 Skills Integradas <span class="badge badge-sm badge-success">.agents/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 space-y-4">
+                <div class="badge badge-primary badge-outline gap-2 font-semibold text-xs tracking-wider uppercase py-3 px-4">
+                    ⚡ Starter Template Oficial
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tight leading-tight">
+                    Plantilla Base Fullstack <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                        Django, HTMX & DaisyUI
+                    </span>
+                </h1>
+                <p class="text-base-content/80 text-base md:text-lg max-w-xl">
+                    Estructura modular lista para producción, separación limpia de configuraciones por entorno, componentes reactivos sin SPA y preparada para desarrollo asistido por Agentes IA.
+                </p>
+
+                <div class="pt-2 flex flex-wrap gap-3">
+                    <a href="#demos" class="btn btn-primary gap-2">
+                        Ver Demos en Vivo
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                    <a href="{% url 'admin:index' %}" class="btn btn-outline gap-2">
+                        Acceder a Django Admin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Interactive Demos Section -->
+    <div id="demos" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Demo 1: HTMX + Alpine Counter with OOB Toast -->
+        <div class="card bg-base-100 shadow-sm border border-base-300">
+            <div class="card-body">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="card-title text-lg flex items-center gap-2">
+                        <span class="p-2 bg-primary/10 text-primary rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        </span>
+                        Demo 1: HTMX Swap + OOB Toast
+                    </h2>
+                    <span class="badge badge-sm badge-outline">Reactivo</span>
+                </div>
+
+                <p class="text-sm text-base-content/70 mb-4">
+                    Presiona los botones para emitir peticiones <code class="text-xs bg-base-200 px-1 py-0.5 rounded font-mono">hx-post</code> que actualizan el fragmento del contador y envían un toast de alerta Out-of-Band simultáneamente.
+                </p>
+
+                <!-- Target Swapped by HTMX -->
+                {% include "pages/partials/_counter_box.html" %}
+
+                <div class="card-actions justify-center gap-3 mt-4">
+                    <button
+                        hx-post="{% url 'core:counter-decrement' %}"
+                        hx-target="#counter-box"
+                        hx-swap="outerHTML"
+                        class="btn btn-outline btn-warning btn-sm gap-2"
+                    >
+                        &minus; Decrementar
+                    </button>
+                    <button
+                        hx-post="{% url 'core:counter-increment' %}"
+                        hx-target="#counter-box"
+                        hx-swap="outerHTML"
+                        class="btn btn-primary btn-sm gap-2"
+                    >
+                        + Incrementar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo 2: Dynamic Server Modal -->
+        <div class="card bg-base-100 shadow-sm border border-base-300">
+            <div class="card-body">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="card-title text-lg flex items-center gap-2">
+                        <span class="p-2 bg-secondary/10 text-secondary rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </span>
+                        Demo 2: Modal Dinámico Servidor
+                    </h2>
+                    <span class="badge badge-sm badge-outline">Alpine + HTMX</span>
+                </div>
+
+                <p class="text-sm text-base-content/70 mb-4">
+                    El cuerpo del modal se carga vía HTMX solo cuando se solicita, mientras que Alpine gestiona las transiciones visuales, la tecla <kbd class="kbd kbd-xs">ESC</kbd> y el cierre por clic fuera del cuadro.
+                </p>
+
+                <div class="p-6 bg-base-200/50 rounded-box border border-base-200 flex flex-col items-center justify-center text-center my-auto">
+                    <p class="text-xs text-base-content/60 mb-4">
+                        Haz clic en el botón para solicitar el partial a Django y abrir el modal dialog:
+                    </p>
+                    <button
+                        type="button"
+                        hx-get="{% url 'core:modal-demo' %}"
+                        hx-target="#modal-content"
+                        hx-swap="innerHTML"
+                        x-on:click="$dispatch('open-modal')"
+                        class="btn btn-secondary btn-sm gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        Abrir Modal Dinámico
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quick Commands & Guidelines Card -->
+    <div class="card bg-base-100 shadow-sm border border-base-300">
+        <div class="card-body">
+            <h2 class="card-title text-xl font-bold flex items-center gap-2 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                Flujo de Trabajo y Comandos del Proyecto
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 bg-base-200/60 rounded-box border border-base-200">
+                    <span class="badge badge-primary badge-sm font-semibold mb-2">1. Servidor Django</span>
+                    <pre class="bg-base-300 text-xs p-3 rounded font-mono overflow-x-auto text-base-content"><code>uv run python manage.py runserver</code></pre>
+                    <p class="text-xs text-base-content/70 mt-2">Ejecuta Django en desarrollo con recarga automática.</p>
+                </div>
+
+                <div class="p-4 bg-base-200/60 rounded-box border border-base-200">
+                    <span class="badge badge-secondary badge-sm font-semibold mb-2">2. Watcher CSS</span>
+                    <pre class="bg-base-300 text-xs p-3 rounded font-mono overflow-x-auto text-base-content"><code>npm run watch:css</code></pre>
+                    <p class="text-xs text-base-content/70 mt-2">Compila Tailwind y DaisyUI en tiempo real al editar templates.</p>
+                </div>
+
+                <div class="p-4 bg-base-200/60 rounded-box border border-base-200">
+                    <span class="badge badge-accent badge-sm font-semibold mb-2">3. Tests y Calidad</span>
+                    <pre class="bg-base-300 text-xs p-3 rounded font-mono overflow-x-auto text-base-content"><code>uv run pytest
+uv run ruff check .</code></pre>
+                    <p class="text-xs text-base-content/70 mt-2">Garantiza cero regresiones y apego a las reglas de código.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

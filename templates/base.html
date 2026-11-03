@@ -1,0 +1,44 @@
+{% load static django_htmx %}
+<!DOCTYPE html>
+<html lang="es" data-theme="corporate" x-data="{ currentTheme: localStorage.getItem('theme') || 'corporate' }" :data-theme="currentTheme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Fullstack Starter{% endblock %}</title>
+
+    <!-- Tailwind CSS + DaisyUI -->
+    <link rel="stylesheet" href="{% static 'css/dist/output.css' %}">
+
+    <!-- HTMX & Alpine.js -->
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="{% static 'js/alpine.min.js' %}" defer></script>
+    {% django_htmx_script %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body
+    class="min-h-screen bg-base-200 text-base-content flex flex-col antialiased"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+>
+    <!-- Navbar -->
+    {% include "components/_navbar.html" %}
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-4 bg-base-100 text-base-content border-t border-base-300">
+        <aside>
+            <p>Django + HTMX + DaisyUI + Alpine.js Starter Template &bull; Diseñado con arquitectura modular y soporte de Agentes IA.</p>
+        </aside>
+    </footer>
+
+    <!-- Global Components (Modals & Toast Alerts) -->
+    {% include "components/_modal_shell.html" %}
+    {% include "components/_toast_container.html" %}
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

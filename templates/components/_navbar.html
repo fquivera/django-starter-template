@@ -1,0 +1,57 @@
+<div class="navbar bg-base-100 shadow-sm border-b border-base-300 px-4 md:px-8">
+    <div class="navbar-start">
+        <a href="{% url 'core:home' %}" class="btn btn-ghost text-xl font-bold tracking-tight">
+            <span class="text-primary">Django</span>Stack
+            <span class="badge badge-sm badge-secondary font-mono">v5.2</span>
+        </a>
+    </div>
+
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 gap-1 font-medium">
+            <li><a href="{% url 'core:home' %}" class="active">Inicio</a></li>
+            <li><a href="{% url 'admin:index' %}" target="_blank">Django Admin</a></li>
+            <li><a href="{% url 'core:health-check' %}" target="_blank">Health API</a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-end gap-2">
+        <!-- Theme Selector (DaisyUI + Alpine) -->
+        <div class="dropdown dropdown-end" x-data="{ open: false }">
+            <button
+                tabindex="0"
+                class="btn btn-sm btn-ghost gap-2"
+                x-on:click="open = !open"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                <span class="capitalize hidden sm:inline" x-text="currentTheme"></span>
+                <svg class="h-3 w-3 fill-current opacity-60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1799 349l242 241-1017 1018L7 590l242-241 775 775 775-775z"></path></svg>
+            </button>
+            <ul
+                tabindex="0"
+                class="dropdown-content z-[1] menu p-2 shadow-2xl bg-base-100 rounded-box w-52 max-h-96 overflow-y-auto mt-2"
+                x-show="open"
+                x-on:click.outside="open = false"
+            >
+                <template x-for="theme in ['corporate', 'emerald', 'winter', 'light', 'dark', 'night', 'synthwave']">
+                    <li>
+                        <button
+                            type="button"
+                            x-on:click="currentTheme = theme; localStorage.setItem('theme', theme); open = false;"
+                            class="flex justify-between capitalize"
+                            :class="{ 'active': currentTheme === theme }"
+                        >
+                            <span x-text="theme"></span>
+                            <span class="badge badge-xs" :class="{ 'badge-primary': currentTheme === theme }"></span>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline btn-primary">
+            Docs
+        </a>
+    </div>
+</div>

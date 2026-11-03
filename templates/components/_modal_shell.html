@@ -1,0 +1,45 @@
+<!-- Dynamic Server-Rendered Modal Shell -->
+<div
+    x-data="{ open: false }"
+    x-show="open"
+    x-on:open-modal.window="open = true"
+    x-on:close-modal.window="open = false; $refs.modalContent.innerHTML = ''"
+    x-on:keydown.escape.window="open = false; $refs.modalContent.innerHTML = ''"
+    x-cloak
+    class="fixed inset-0 z-50 overflow-y-auto"
+>
+    <!-- Backdrop with blur -->
+    <div
+        x-show="open"
+        x-transition:enter="ease-out duration-200"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-neutral/60 backdrop-blur-xs transition-opacity"
+        x-on:click="open = false; $refs.modalContent.innerHTML = ''"
+    ></div>
+
+    <!-- Modal Box Container -->
+    <div class="flex min-h-full items-center justify-center p-4">
+        <div
+            x-show="open"
+            x-transition:enter="ease-out duration-200"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="ease-in duration-150"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            x-ref="modalContent"
+            id="modal-content"
+            class="modal-box relative w-full max-w-lg bg-base-100 shadow-2xl p-6"
+            x-on:click.stop
+        >
+            <!-- Content dynamically swapped via HTMX -->
+            <div class="flex items-center justify-center py-8">
+                <span class="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        </div>
+    </div>
+</div>

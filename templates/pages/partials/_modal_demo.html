@@ -1,0 +1,50 @@
+<!-- Server Rendered Modal Body -->
+<div class="flex justify-between items-center pb-3 border-b border-base-200">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Modal Dinámico Servidor + Alpine
+    </h3>
+    <button
+        type="button"
+        x-on:click="$dispatch('close-modal')"
+        class="btn btn-sm btn-circle btn-ghost"
+    >✕</button>
+</div>
+
+<div class="py-4 space-y-3">
+    <p class="text-sm text-base-content/80">
+        Este contenido fue solicitado bajo demanda a Django mediante un endpoint HTMX (<code class="badge badge-sm badge-neutral font-mono">/htmx/modal-demo/</code>) y renderizado dentro del shell controlado por Alpine.js.
+    </p>
+
+    <div class="alert alert-success/20 border border-success/30 rounded-box text-xs">
+        <span>✅ <strong>Ventaja Fullstack:</strong> Cero JavaScript custom para abrir/cerrar. El ciclo de vida de transiciones y accesibilidad (ESC, backdrop) lo gestiona Alpine; el HTML proviene directamente del servidor Django.</span>
+    </div>
+
+    <div class="bg-base-200 p-3 rounded-box text-xs font-mono">
+        <p class="font-semibold text-base-content mb-1">Stack en este componente:</p>
+        <ul class="list-disc list-inside space-y-0.5 text-base-content/70">
+            <li>Alpine: <span class="text-primary">$dispatch('open-modal')</span></li>
+            <li>HTMX: <span class="text-secondary">hx-get + hx-target</span></li>
+            <li>DaisyUI: <span class="text-accent">modal-box + alert</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal-action border-t border-base-200 pt-3">
+    <button
+        type="button"
+        x-on:click="$dispatch('close-modal')"
+        class="btn btn-sm btn-outline"
+    >
+        Cerrar
+    </button>
+    <button
+        type="button"
+        x-on:click="$dispatch('close-modal')"
+        class="btn btn-sm btn-primary"
+    >
+        Entendido
+    </button>
+</div>

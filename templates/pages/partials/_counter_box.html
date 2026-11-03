@@ -1,0 +1,26 @@
+<!-- Counter Box Fragment (Swapped into #counter-box) -->
+<div id="counter-box" class="flex flex-col items-center justify-center p-6 bg-base-100 rounded-box border border-base-300 shadow-inner">
+    <span class="text-sm font-semibold uppercase tracking-wider text-base-content/70">Valor del Contador</span>
+    <span class="text-6xl font-black text-primary my-2">{{ counter }}</span>
+    <span class="text-xs text-base-content/60">Almacenado de forma reactiva en Django Session</span>
+</div>
+
+{% if toast_message %}
+<!-- Out-of-Band Toast Alert (Appended to #toast-container) -->
+<div id="toast-container" hx-swap-oob="beforeend">
+    <div
+        x-data="{ show: true }"
+        x-show="show"
+        x-init="setTimeout(() => show = false, 3500)"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 transform translate-y-0"
+        x-transition:leave-end="opacity-0 transform translate-y-2"
+        class="alert {{ toast_type|default:'alert-info' }} shadow-lg flex items-center gap-2 max-w-sm"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-sm font-medium">{{ toast_message }}</span>
+    </div>
+</div>
+{% endif %}
