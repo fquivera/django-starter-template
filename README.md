@@ -1,6 +1,6 @@
 # Django Fullstack Starter Template
 
-[![Django 5.2](https://img.shields.io/badge/Django-5.2-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Django 5.2 LTS](https://img.shields.io/badge/Django-5.2%20LTS-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![HTMX 2.0](https://img.shields.io/badge/HTMX-2.0-336699?logo=htmx&logoColor=white)](https://htmx.org/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![DaisyUI 5](https://img.shields.io/badge/DaisyUI-5-5A0EF8?logo=daisyui&logoColor=white)](https://daisyui.com/)
@@ -143,6 +143,8 @@ Accesos locales:
    - `views.py` / `views/`: traducción HTTP delgada, detección con `request.htmx` y retorno HTTP 200 en errores de formulario HTMX.
 2. **Procesamiento asíncrono recomendado con Huey**:
    - Para colas de tareas o tareas periódicas en proyectos pequeños y medianos, este starter adopta **Huey + Redis** (documentado en [`.agents/skills-ondemand/huey-patterns/SKILL.md`](./.agents/skills-ondemand/huey-patterns/SKILL.md)) en lugar de Celery, reduciendo complejidad operativa y consumo de memoria.
+3. **Política de Versionado LTS**:
+   - La plantilla fija **Django 5.2 LTS** (`django>=5.2.0,<5.3.0` en [`pyproject.toml`](./pyproject.toml)) para garantizar 3 años de estabilidad y actualizaciones de seguridad en producción sin saltos de versión frecuentes. Se mantiene en 5.2 LTS (omitiendo versiones intermedias 6.0/6.1) hasta el lanzamiento de la próxima versión **Django 6.2 LTS**.
 
 ---
 

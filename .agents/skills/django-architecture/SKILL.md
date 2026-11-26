@@ -23,6 +23,7 @@ For async or scheduled jobs outside the request cycle, read `.agents/skills-onde
 
 ## 2. Project Layout & Bounded Contexts
 
+- **Django LTS policy**: pin to **Django 5.2 LTS** (`django>=5.2.0,<5.3.0`) for 3-year production stability and security updates; do not upgrade to non-LTS releases (6.0/6.1) — stay on 5.2 LTS until **Django 6.2 LTS** is released.
 - `config/settings/{base,development,test,production}.py` — split settings; never branch on `settings.DEBUG` for business rules or permissions.
 - `apps/<domain>/` — one domain noun per app, forming a strict DAG (no circular cross-app imports; use string references like `"orders.OrderItem"` in models).
 - `common/` — shared abstract models (e.g. `TimestampedModel`), shared helpers, and context processors.

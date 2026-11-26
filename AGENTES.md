@@ -8,7 +8,7 @@ Este documento establece las **reglas de interacción, principios arquitectónic
 
 El proyecto implementa una arquitectura **Server-Driven Web Application**:
 
-- **Django 5.x (Backend)**: Fuente única de la verdad (*Source of Truth*). Lógica de negocio, validaciones, permisos y persistencia residen en el servidor.
+- **Django 5.2 LTS (Backend)**: Fuente única de la verdad (*Source of Truth*). Lógica de negocio, validaciones, permisos y persistencia residen en el servidor. Política LTS: mantener `django>=5.2.0,<5.3.0` (3 años de estabilidad y parches de seguridad en producción) sin actualizar a versiones intermedias no-LTS (`6.0`/`6.1`), hasta que se libere **Django 6.2 LTS**.
 - **HTMX + `django-htmx` (Sincronización)**: Toda comunicación UI cliente-servidor intercambia fragmentos HTML (`_partial.html`). Las vistas detectan HTMX mediante `request.htmx` y **nunca** retornan JSON para la UI interna.
 - **Tailwind CSS 4 + DaisyUI 5 (Diseño)**: Configuración *CSS-first* en `static/css/input.css` (`@import "tailwindcss";` + `@plugin "daisyui";`), compilado con `npm run build:css`. Uso estricto de tokens semánticos (`bg-base-100`, `text-base-content`, `btn-primary`, `alert-soft`, `menu-active`) e iconos SVG inline (Heroicons). Prohibido hardcodear colores hexadecimales o escalas `text-gray-*`.
 - **Alpine.js 3 (Estado del Cliente)**: Gestiona exclusivamente estado visual transitorio del DOM que no persiste en servidor (modales, dropdowns, tabs, `ESC`, focus). Prohibido manipular el DOM con JS Vanilla o llamar `fetch()` desde Alpine.
