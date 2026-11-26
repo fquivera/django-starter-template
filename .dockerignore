@@ -10,5 +10,6 @@ __pycache__
 *.pyc
 .agents
 .github
+docs
 staticfiles
 *.md
