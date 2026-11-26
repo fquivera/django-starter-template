@@ -1,6 +1,6 @@
 [project]
 name = "django-starter-template"
-version = "0.3.1"
+version = "0.3.2"
 description = "Production-ready Django + HTMX + DaisyUI + Alpine.js starter template"
 readme = "README.md"
 requires-python = ">=3.11"

@@ -4,6 +4,15 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/), y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.3.2] - 2026-11-26
+
+### Added
+- Agregadas capturas de vista previa en temas claro (`corporate`) y oscuro (`night`) en `docs/images/demo-light.jpeg` y `docs/images/demo-dark.jpeg`.
+- Añadidas secciones de vista previa lado a lado y estructura actualizada en `README.md` y `README.es.md`.
+
+### Changed
+- Excluido `docs` en `.dockerignore` para mantener mínimo el contexto de compilación Docker.
+
 ## [0.3.1] - 2026-11-26
 
 ### Fixed
@@ -57,6 +66,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 ### Added
 - Lanzamiento inicial de la plantilla **Django + HTMX + DaisyUI + Alpine.js** (`6f5b69d`) con `uv`, settings divididos por entorno (`config/settings/`), `apps.users.User`, demos HTMX/OOB/modal, `pytest-django` y `ruff`.
 
+[0.3.2]: https://github.com/fquivera/django-starter-template/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/fquivera/django-starter-template/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/fquivera/django-starter-template/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/fquivera/django-starter-template/compare/v0.1.0...v0.2.0
