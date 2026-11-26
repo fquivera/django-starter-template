@@ -1,12 +1,16 @@
-# Guía de Contribución (`CONTRIBUTING.md`)
+# Contributing Guide (`CONTRIBUTING.md`)
 
-¡Gracias por tu interés en contribuir a **Django Fullstack Starter Template**!
+🌐 Language: **English** | [Español](./CONTRIBUTING.es.md)
 
-Esta plantilla está diseñada para mantenerse limpia, genérica y lista para producción sobre **Django 5.2 LTS + HTMX 2 + Alpine.js 3 + Tailwind CSS 4 + DaisyUI 5**.
+Thank you for your interest in contributing to **Django Fullstack Starter Template**!
+
+This template is designed to stay clean, generic, and production-ready on **Django 5.2 LTS + HTMX 2 + Alpine.js 3 + Tailwind CSS 4 + DaisyUI 5**.
 
 ---
 
-## 1. Preparar Entorno Local
+## 1. Local Environment Setup
+
+### Option A: Local (`uv` + `npm`)
 
 ```bash
 git clone git@github.com:fquivera/django-starter-template.git
@@ -18,34 +22,41 @@ npm run build:css
 uv run python manage.py migrate
 ```
 
+### Option B: Docker Compose
+
+```bash
+docker compose up --build
+```
+
 ---
 
-## 2. Flujo GitFlow y Conventional Commits
+## 2. GitFlow & Conventional Commits
 
-1. **Ramas de trabajo:**
-   - Crea tu rama siempre desde `develop`:
+1. **Working branches:**
+   - Always branch from `develop`:
      ```bash
      git switch develop && git pull --ff-only origin develop
-     git switch -c feat/mi-mejora
+     git switch -c feat/my-improvement
      ```
-   - Prefijos recomendados: `feat/*`, `fix/*`, `docs/*`, `refactor/*`, `test/*`, `ci/*`, `chore/*`.
-   - Las ramas `release/*` y `hotfix/*` nacen desde `main` y se integran con merge commit (`--no-ff`) y retro-fusión hacia `develop`.
+   - Recommended prefixes: `feat/*`, `fix/*`, `docs/*`, `refactor/*`, `test/*`, `ci/*`, `chore/*`.
+   - `release/*` and `hotfix/*` branches are cut from `main`, merged via merge commit (`--no-ff`), and back-merged into `develop`.
 
-2. **Formato de Commits y Título de PR (Conventional Commits):**
+2. **Commit & PR Title Format (Conventional Commits):**
    ```text
-   <type>(<scope>)!: <descripción en imperativo minúscula sin punto final>
+   <type>(<scope>)!: <imperative lowercase description without trailing period>
    ```
-   - Tipos válidos: `feat`, `fix`, `perf`, `refactor`, `docs`, `test`, `build`, `ci`, `style`, `chore`, `revert`.
-   - Ámbitos sugeridos: `core`, `users`, `ui`, `common`, `config`, `deps`, `ci`, `skills`, `docs`, `release`.
+   - Valid types: `feat`, `fix`, `perf`, `refactor`, `docs`, `test`, `build`, `ci`, `style`, `chore`, `revert`.
+   - Suggested scopes: `core`, `users`, `ui`, `common`, `config`, `deps`, `ci`, `infra`, `skills`, `docs`, `release`.
 
 ---
 
-## 3. Quality Gate Obligatorio
+## 3. Mandatory Quality Gate
 
-Antes de abrir tu Pull Request hacia `develop`, asegúrate de que todo pasa localmente:
+Before opening a Pull Request targeting `develop`, verify every check passes locally:
 
 ```bash
 npm run build:css
+git diff --exit-code -- static/css/dist/output.css
 uv run python manage.py check
 uv run python manage.py makemigrations --check --dry-run
 uv run pytest
@@ -55,9 +66,9 @@ uv run ruff format --check .
 
 ---
 
-## 4. Principios para Cambios y Skills de IA
+## 4. Template & AI Skill Principles
 
-- **Mantén el starter genérico:** no incluyas lógica o nomenclatura específica de un negocio particular.
-- **Política LTS:** mantenemos **Django 5.2 LTS** (`>=5.2.0,<5.3.0`) hasta el lanzamiento de **Django 6.2 LTS**.
-- **Asíncrono recomendado:** documentar e integrar **Huey + Redis** antes que Celery.
-- Si utilizas asistentes de IA o editas `.agents/`, consulta [`AGENTES.md`](./AGENTES.md) y [`.agents/skills/README.md`](./.agents/skills/README.md).
+- **Keep the starter generic:** avoid domain-specific business logic or naming from any single application.
+- **LTS policy:** we pin **Django 5.2 LTS** (`>=5.2.0,<5.3.0`) until **Django 6.2 LTS** is released.
+- **Recommended async queue:** prefer **Huey + Redis** over Celery.
+- When using AI assistants or editing `.agents/`, follow [`AGENTES.md`](./AGENTES.md) and [`.agents/skills/README.md`](./.agents/skills/README.md).

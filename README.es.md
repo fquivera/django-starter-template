@@ -184,7 +184,7 @@ Este repositorio sigue una estructura modular de bajo consumo para asistentes co
 
 ## 🔀 Flujo de Contribución (GitFlow + Conventional Commits)
 
-Consulta las reglas completas en [`CONTRIBUTING.md`](./CONTRIBUTING.md) y la política de reporte responsable en [`SECURITY.md`](./SECURITY.md).
+Consulta las reglas completas en [`CONTRIBUTING.es.md`](./CONTRIBUTING.es.md) y la política de reporte responsable en [`SECURITY.es.md`](./SECURITY.es.md).
 
 1. Crea una rama desde `develop`:
    ```bash
