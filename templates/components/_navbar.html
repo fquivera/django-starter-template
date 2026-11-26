@@ -16,8 +16,15 @@
 
     <div class="navbar-end gap-2">
         <!-- Theme Selector (DaisyUI + Alpine) -->
-        <div class="dropdown dropdown-end" x-data="{ open: false }">
+        <div
+            class="dropdown dropdown-end"
+            x-data="{ open: false }"
+            :class="{ 'dropdown-open': open, 'dropdown-close': !open }"
+            x-on:click.outside="open = false"
+            x-on:keydown.escape.window="open = false"
+        >
             <button
+                type="button"
                 tabindex="0"
                 class="btn btn-sm btn-ghost gap-2"
                 x-on:click="open = !open"
@@ -31,8 +38,6 @@
             <ul
                 tabindex="0"
                 class="dropdown-content z-1 menu p-2 shadow-2xl bg-base-100 rounded-box w-52 max-h-96 overflow-y-auto mt-2"
-                x-show="open"
-                x-on:click.outside="open = false"
             >
                 <template x-for="theme in ['corporate', 'emerald', 'winter', 'light', 'dark', 'night', 'synthwave']">
                     <li>

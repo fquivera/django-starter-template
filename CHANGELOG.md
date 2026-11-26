@@ -4,6 +4,21 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/), y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.3.0] - 2026-11-26
+
+### Added
+- **CI/CD y Salud Comunitaria (`.github/`):**
+  - Workflow de GitHub Actions (`.github/workflows/ci.yml`) con jobs `Lint & Assets` (Ruff lint/format, build Tailwind 4 + verificación de drift CSS y validación de `docker compose config`), `Django Checks` (`check`, `makemigrations --check --dry-run` y `check --deploy --fail-level WARNING`) y `Test` en matriz Python `3.12` / `3.13`.
+  - `.github/dependabot.yml` con actualizaciones semanales agrupadas para `uv`, `npm` y `github-actions` apuntando a `develop`.
+  - Formularios de Issues (`bug_report.yml`, `feature_request.yml`, `config.yml` enlazando Discussions) y `.github/pull_request_template.md`.
+- **Docker listo para producción:** `Dockerfile` multi-stage non-root (`node:22-slim` → `python:3.12-slim` + `uv` → runtime Gunicorn con `collectstatic` y `HEALTHCHECK` en `/health/`), `.dockerignore` y `compose.yml` (PostgreSQL 16 + perfil opcional `async` con Redis para Huey).
+- **Documentación bilingüe completa:** `README.md` / `README.es.md`, `CONTRIBUTING.md` / `CONTRIBUTING.es.md` y `SECURITY.md` / `SECURITY.es.md` con selector de idioma superior (inglés por defecto + español).
+
+### Changed
+- `DJANGO_LANGUAGE_CODE` y `DJANGO_TIME_ZONE` configurables vía variables de entorno con `django-environ` en `config/settings/base.py`, `.env.example` y `configuration-rules.md`.
+- `SESSION_COOKIE_SECURE` y `CSRF_COOKIE_SECURE` configurables por entorno (por defecto `True`) en `config/settings/production.py` para permitir pruebas locales HTTP en Docker Compose sin debilitar producción.
+- Organización de prueba en `apps/users/tests.py` actualizada al valor genérico `"Acme Corp"`.
+
 ## [0.2.0] - 2026-11-26
 
 ### Added
@@ -31,5 +46,6 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 ### Added
 - Lanzamiento inicial de la plantilla **Django + HTMX + DaisyUI + Alpine.js** (`6f5b69d`) con `uv`, settings divididos por entorno (`config/settings/`), `apps.users.User`, demos HTMX/OOB/modal, `pytest-django` y `ruff`.
 
+[0.3.0]: https://github.com/fquivera/django-starter-template/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/fquivera/django-starter-template/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/fquivera/django-starter-template/releases/tag/v0.1.0
