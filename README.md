@@ -17,6 +17,14 @@ Includes a **low-token 2-layer AI Agent skills architecture** designed to minimi
 
 ---
 
+## 📸 Preview
+
+| Light Theme (`corporate`) | Dark Theme (`night`) |
+|---|---|
+| ![Light Theme Preview](./docs/images/demo-light.jpeg) | ![Dark Theme Preview](./docs/images/demo-dark.jpeg) |
+
+---
+
 ## 🎯 Key Features
 
 - **Fast Dependency Management with `uv`**: Reproducible resolution and separated `dev` dependency groups in [`pyproject.toml`](./pyproject.toml) + `uv.lock`.
@@ -59,6 +67,7 @@ django-starter-template/
 │   └── users/                      # Custom User model & Admin
 ├── common/                         # Shared helpers and cross-app utilities
 ├── config/                         # Project configuration (settings/, urls.py, wsgi/asgi)
+├── docs/images/                    # README preview screenshots (light & dark themes)
 ├── static/
 │   ├── css/
 │   │   ├── input.css               # Tailwind CSS 4 + DaisyUI 5 source (@plugin)
