@@ -1,31 +1,32 @@
 # Django Fullstack Starter Template
 
-[![Django 5.2](https://img.shields.io/badge/Django-5.2-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Django 5.2 LTS](https://img.shields.io/badge/Django-5.2%20LTS-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![HTMX 2.0](https://img.shields.io/badge/HTMX-2.0-336699?logo=htmx&logoColor=white)](https://htmx.org/)
-[![DaisyUI 4](https://img.shields.io/badge/DaisyUI-4-5A0EF8?logo=daisyui&logoColor=white)](https://daisyui.com/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![DaisyUI 5](https://img.shields.io/badge/DaisyUI-5-5A0EF8?logo=daisyui&logoColor=white)](https://daisyui.com/)
 [![Alpine.js 3](https://img.shields.io/badge/Alpine.js-3-8BC0D0?logo=alpinedotjs&logoColor=white)](https://alpinejs.dev/)
 [![uv](https://img.shields.io/badge/uv-Package%20Manager-DE5FE9)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/badge/Code%20Style-Ruff-black)](https://github.com/astral-sh/ruff)
 
-Plantilla base y esqueleto de producción para proyectos **Django Fullstack** modernos utilizando la arquitectura **Server-Driven Web Application**: Django como fuente única de la verdad, HTMX para sincronización de fragmentos HTML reactivos sin SPA, DaisyUI + Tailwind CSS para componentes de diseño temáticos, y Alpine.js para estado transitorio en cliente.
+Plantilla base lista para producción para aplicaciones **Django Fullstack** bajo el paradigma **Server-Driven Web Application**: Django como fuente única de la verdad, **HTMX 2** para actualizaciones parciales de HTML sin complejidad de SPA, **Tailwind CSS 4 + DaisyUI 5** para un sistema de diseño semántico y temático, y **Alpine.js 3** para estado efímero de interfaz.
 
-Incluye configuración completa para desarrollo asistido por **Agentes de Inteligencia Artificial** con 24 SKILLS arquitectónicas pre-instaladas.
+Diseñada además con una **arquitectura de Skills en 2 capas optimizada para Agentes de IA** (bajo consumo de tokens de entrada por turno, sin perder cobertura técnica).
 
 ---
 
 ## 🎯 Características Principales
 
-- **Gestión Ultrarrápida de Dependencias**: Administrado con [`uv`](https://github.com/astral-sh/uv) para resolución e instalación de paquetes en segundos.
-- **Configuración Dividida por Entornos**: `config/settings/` separado en `base.py`, `development.py`, `production.py` y `test.py` con `django-environ`.
-- **Modelo de Usuario Personalizado**: `apps.users.User` pre-configurado desde el día cero para evitar bloqueos de migraciones.
-- **DaisyUI 4 + Tailwind CSS 3**: Sistema de diseño con temas intercambiables en tiempo real (`corporate`, `emerald`, `winter`, `light`, `dark`, etc.) persistidos en `localStorage`.
-- **HTMX 2 + Alpine.js 3 Pre-cableados**:
-  - Inyección global de token CSRF en todas las peticiones `hx-*`.
-  - Shell de Modal Dinámico servido bajo demanda vía HTMX y animado con Alpine.
-  - Contenedor de Alertas Toast Out-of-Band (`hx-swap-oob`) con auto-cierre.
-- **Listo para Producción**: WhiteNoise con compresión Brotli y cache-busting, Gunicorn, PostgreSQL vía `psycopg[binary]`.
-- **Quality Gates y Testing**: Configurado con `pytest`, `pytest-django` (settings en memoria ultra veloces) y `ruff` para linting y formateo.
-- **AI Agent Ready**: Directorio `.agents/skills/` con 24 guías de ingeniería y `AGENTES.md` para dirigir LLMs con precisión.
+- **Gestión Rápida con `uv`**: Resolución reproducible de dependencias y grupos `dev` en [`pyproject.toml`](./pyproject.toml) + `uv.lock`.
+- **Settings Divididos por Entorno**: `config/settings/` (`base.py`, `development.py`, `production.py`, `test.py`) administrado con `django-environ`.
+- **Custom User Model desde el Día Cero**: `apps.users.User` configurado en `AUTH_USER_MODEL` antes de la primera migración.
+- **Tailwind CSS 4 + DaisyUI 5 (*CSS-First*)**: Sin `tailwind.config.js`; temas declarados en [`static/css/input.css`](./static/css/input.css) con cambio dinámico en tiempo real (`corporate`, `emerald`, `winter`, `light`, `dark`, `night`, `synthwave`) persistido en `localStorage`.
+- **HTMX 2 + `django-htmx` + Alpine.js 3 Pre-cableados**:
+  - Middleware `django_htmx` activo (`request.htmx`) y script CSRF global en `<body>`.
+  - Shell de modal dinámico cargado bajo demanda vía HTMX y controlado con Alpine (`ESC`, backdrop, transiciones).
+  - Contenedor de notificaciones toast Out-of-Band (`hx-swap-oob`) con auto-cierre.
+- **Listo para Producción**: WhiteNoise con compresión Brotli, Gunicorn y soporte PostgreSQL vía `psycopg[binary]`.
+- **Quality Gates Automatizados**: `pytest`, `pytest-django` y `ruff` (lint + format).
+- **AI-Agent Ready de Bajo Consumo**: 6 skills activas en [`.agents/skills/`](./.agents/skills/) + 6 skills especializadas *on-demand* en [`.agents/skills-ondemand/`](./.agents/skills-ondemand/) (~75% menos tokens fijos por turno frente a catálogos planos).
 
 ---
 
@@ -33,54 +34,42 @@ Incluye configuración completa para desarrollo asistido por **Agentes de Inteli
 
 ```text
 django-starter-template/
-├── .agents/                      # Catálogo de 24 Skills de desarrollo para Agentes IA
-│   └── skills/
-├── apps/                         # Aplicaciones de dominio del proyecto
-│   ├── core/                     # App principal: Landing, demos HTMX, healthcheck
-│   │   ├── apps.py
-│   │   ├── urls.py
-│   │   ├── views.py
-│   │   └── tests.py
-│   └── users/                    # Custom User Model & Admin
-│       ├── apps.py
-│       ├── admin.py
-│       ├── models.py
-│       ├── urls.py
-│       └── tests.py
-├── common/                       # Utilidades transversales y context processors
-├── config/                       # Paquete de configuración del proyecto (NO una app)
-│   ├── asgi.py
-│   ├── wsgi.py
-│   ├── urls.py
-│   └── settings/
-│       ├── __init__.py
-│       ├── base.py
-│       ├── development.py
-│       ├── production.py
-│       └── test.py
+├── .agents/
+│   ├── skills/                     # 6 Skills activas (Core + Frontend consolidado)
+│   │   ├── README.md
+│   │   ├── django-architecture/
+│   │   ├── django-models-migrations/
+│   │   ├── django-views-forms-security/
+│   │   ├── django-testing-quality/
+│   │   ├── git-workflow/
+│   │   └── django-hypermedia-ui/
+│   └── skills-ondemand/            # 6 Skills especializadas (0 tokens por defecto)
+│       ├── huey-patterns/          # Tareas asíncronas/crons con Huey + Redis
+│       ├── django-infrastructure/  # Docker, Gunicorn, Compose, WhiteNoise, CSP
+│       ├── django-admin-expert/    # Optimización N+1 y acciones en Django Admin
+│       ├── github-actions/         # CI/CD, branch policy, releases
+│       ├── i18n/                   # Catálogos .po/.mo y localización
+│       └── systematic-debugging/   # Depuración en 4 fases (Root Cause First)
+├── apps/
+│   ├── core/                       # Landing, demos HTMX y endpoint /health/
+│   └── users/                      # Custom User Model & Admin
+├── common/                         # Utilidades transversales y helpers compartidos
+├── config/                         # Configuración del proyecto (settings/, urls.py, wsgi/asgi)
 ├── static/
 │   ├── css/
-│   │   ├── input.css             # Tailwind CSS + DaisyUI source
-│   │   └── dist/output.css       # CSS compilado y minificado
+│   │   ├── input.css               # Fuente Tailwind CSS 4 + DaisyUI 5 (@plugin)
+│   │   └── dist/output.css         # CSS compilado y minificado
 │   └── js/
-│       ├── htmx.min.js           # HTMX vendor script
-│       └── alpine.min.js         # Alpine.js vendor script
+│       ├── htmx.min.js             # HTMX 2 vendorizado
+│       └── alpine.min.js           # Alpine.js 3 vendorizado
 ├── templates/
-│   ├── base.html                 # Layout maestro con CSRF, Navbar, Modales y Toasts
-│   ├── components/               # Componentes reutilizables
-│   │   ├── _navbar.html          # Barra de navegación con selector de tema DaisyUI
-│   │   ├── _modal_shell.html     # Modal reactivo controlado por Alpine
-│   │   └── _toast_container.html # Contenedor de notificaciones flotantes
-│   └── pages/
-│       ├── home.html             # Página principal con demostraciones en vivo
-│       └── partials/
-│           ├── _counter_box.html # Fragmento reactivo HTMX con OOB toast
-│           └── _modal_demo.html  # Cuerpo de modal cargado dinámicamente
-├── AGENTES.md                    # Manual y directivas para Agentes de IA
+│   ├── base.html                   # Layout maestro (CSRF, Navbar, Modales y Toasts)
+│   ├── components/                 # _navbar.html, _modal_shell.html, _toast_container.html
+│   └── pages/                      # home.html y partials/ (_counter_box.html, _modal_demo.html)
+├── AGENTES.md                      # Reglas arquitectónicas y Quality Gate para Agentes IA
 ├── manage.py
-├── package.json                  # Scripts y dependencias de Tailwind CSS + DaisyUI
-├── pyproject.toml                # Dependencias Python y configuración de herramientas
-├── tailwind.config.js            # Configuración de Tailwind y temas DaisyUI
+├── package.json                    # Tailwind CSS 4 CLI + DaisyUI 5
+├── pyproject.toml                  # Dependencias Python, Ruff y pytest
 └── README.md
 ```
 
@@ -89,89 +78,127 @@ django-starter-template/
 ## 🚀 Inicio Rápido (Quickstart)
 
 ### Prerrequisitos
+
 - **Python 3.11+**
-- [**uv**](https://docs.astral.sh/uv/getting-started/installation/) instalado (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
+- [**uv**](https://docs.astral.sh/uv/getting-started/installation/) (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
 - **Node.js 18+** y **npm**
 
-### Paso 1: Clonar / Copiar la plantilla para un nuevo proyecto
+### 1. Crear un proyecto desde esta plantilla
+
+En GitHub, haz clic en **"Use this template"** (o clona el repositorio directamente):
+
 ```bash
-# Copiar esta plantilla a una nueva carpeta de proyecto
-cp -r django-starter-template mi-nuevo-proyecto
-cd mi-nuevo-proyecto
+git clone git@github.com:fquivera/django-starter-template.git mi-proyecto
+cd mi-proyecto
 ```
 
-### Paso 2: Crear el entorno y variables de configuración
+### 2. Configurar variables de entorno
+
 ```bash
 cp .env.example .env
 ```
-*(Edita `.env` si deseas cambiar el secreto o conectar a PostgreSQL)*
 
-### Paso 3: Instalar dependencias con `uv`
+*(Edita `.env` si deseas conectar PostgreSQL mediante `DATABASE_URL` o personalizar `DJANGO_SECRET_KEY`.)*
+
+### 3. Instalar dependencias Python y Node
+
 ```bash
-# Crea el virtualenv e instala dependencias sincronizadas
 uv sync
-```
-
-### Paso 4: Instalar y compilar el diseño (DaisyUI + Tailwind)
-```bash
 npm install
 npm run build:css
 ```
 
-### Paso 5: Aplicar migraciones iniciales y crear superusuario
+### 4. Migrar base de datos y crear superusuario
+
 ```bash
 uv run python manage.py migrate
 uv run python manage.py createsuperuser
 ```
 
-### Paso 6: Iniciar los servidores de desarrollo
-Abre dos terminales:
+### 5. Levantar entorno de desarrollo
 
-**Terminal 1 (Servidor Django):**
+En dos terminales:
+
 ```bash
+# Terminal 1: Servidor Django
 uv run python manage.py runserver
-```
 
-**Terminal 2 (Compilación CSS en vivo):**
-```bash
+# Terminal 2: Watcher Tailwind 4 + DaisyUI 5
 npm run watch:css
 ```
 
-Accede a:
-- 🌐 **Aplicación Web**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- ⚙️ **Django Admin**: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-- 🩺 **Health Check API**: [http://127.0.0.1:8000/health/](http://127.0.0.1:8000/health/)
+Accesos locales:
+- **Aplicación Web**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- **Django Admin**: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+- **Health Check**: [http://127.0.0.1:8000/health/](http://127.0.0.1:8000/health/)
 
 ---
 
-## 🛠️ Comandos de Desarrollo Frecuentes
+## 🏗️ Arquitectura & Decisiones Técnicas
+
+1. **Separación de capas por responsabilidad**:
+   - `models.py` / `models/`: invariantes de fila única, `TextChoices` y QuerySets custom (`visible_to()`).
+   - `services.py` / `services/`: casos de uso multi-agregado, `@transaction.atomic` e I/O externo.
+   - `selectors.py` / `selectors/`: lecturas reutilizables optimizadas con `select_related` / `prefetch_related`.
+   - `views.py` / `views/`: traducción HTTP delgada, detección con `request.htmx` y retorno HTTP 200 en errores de formulario HTMX.
+2. **Procesamiento asíncrono recomendado con Huey**:
+   - Para colas de tareas o tareas periódicas en proyectos pequeños y medianos, este starter adopta **Huey + Redis** (documentado en [`.agents/skills-ondemand/huey-patterns/SKILL.md`](./.agents/skills-ondemand/huey-patterns/SKILL.md)) en lugar de Celery, reduciendo complejidad operativa y consumo de memoria.
+3. **Política de Versionado LTS**:
+   - La plantilla fija **Django 5.2 LTS** (`django>=5.2.0,<5.3.0` en [`pyproject.toml`](./pyproject.toml)) para garantizar 3 años de estabilidad y actualizaciones de seguridad en producción sin saltos de versión frecuentes. Se mantiene en 5.2 LTS (omitiendo versiones intermedias 6.0/6.1) hasta el lanzamiento de la próxima versión **Django 6.2 LTS**.
+
+---
+
+## 🛠️ Comandos de Desarrollo y Quality Gate
 
 | Tarea | Comando |
 |---|---|
-| **Ejecutar Tests** | `uv run pytest` |
-| **Auditar Calidad y Tipado** | `uv run ruff check .` |
-| **Formatear Código** | `uv run ruff format .` |
-| **Verificar Sistema Django** | `uv run python manage.py check` |
-| **Verificar Migraciones** | `uv run python manage.py makemigrations --check --dry-run` |
-| **Compilar CSS para Producción** | `npm run build:css` |
+| **Ejecutar Suite de Tests** | `uv run pytest` |
+| **Linting (Ruff)** | `uv run ruff check .` |
+| **Formateo (Ruff)** | `uv run ruff format .` / `uv run ruff format --check .` |
+| **Check del Sistema Django** | `uv run python manage.py check` |
+| **Verificar Migraciones Limpias** | `uv run python manage.py makemigrations --check --dry-run` |
+| **Compilar CSS (Producción)** | `npm run build:css` |
+| **Compilar CSS (Desarrollo)** | `npm run watch:css` |
 
 ---
 
 ## 🧠 Desarrollo Asistido por Agentes de IA
 
-Si estás utilizando **Google Antigravity, Claude, Cursor, Copilot o agentes CLI**:
-1. Consulta [`AGENTES.md`](./AGENTES.md) para conocer las reglas de juego y compuertas de calidad.
-2. La carpeta [`.agents/skills/`](./.agents/skills/) contiene 24 especificaciones detalladas para cada aspecto de Django (arquitectura en capas, modularización con `django-modular-apps`, protección contra IDOR en `django-security-permissions`, migraciones seguras en `django-migrations-patterns` y componentes en `django-htmx-components`).
+Este repositorio sigue una estructura modular de bajo consumo para asistentes como **Google Antigravity, Claude Code, Cursor o Copilot**:
+
+- [`AGENTES.md`](./AGENTES.md): Contrato principal del proyecto, reglas de seguridad anti-IDOR y Quality Gate obligatorio.
+- [`.agents/skills/`](./.agents/skills/): Solo **6 skills activas** (`django-architecture`, `django-models-migrations`, `django-views-forms-security`, `django-testing-quality`, `git-workflow` y `django-hypermedia-ui`), manteniendo el contexto base ligero en cada turno y cargando recetas/componentes desde `references/` únicamente bajo demanda.
+- [`.agents/skills-ondemand/`](./.agents/skills-ondemand/): **6 skills bajo demanda** (`huey-patterns`, `django-infrastructure`, `django-admin-expert`, `github-actions`, `i18n`, `systematic-debugging`) que consumen **0 tokens** hasta ser consultadas explícitamente.
+
+---
+
+## 🔀 Flujo de Contribución (GitFlow + Conventional Commits)
+
+1. Crea una rama desde `develop`:
+   ```bash
+   git switch develop && git pull --ff-only origin develop
+   git switch -c feat/mi-funcionalidad
+   ```
+2. Realiza commits atómicos siguiendo **Conventional Commits** (`feat(scope): ...`, `fix(scope): ...`, `docs: ...`, `refactor(skills): ...`).
+3. Ejecuta el Quality Gate completo (`check`, `makemigrations --check --dry-run`, `pytest`, `ruff check .`, `ruff format --check .`, `npm run build:css`).
+4. Abre un Pull Request hacia `develop` con título en formato Conventional Commits (se integrará mediante **Squash Merge**). Las ramas `release/*` y `hotfix/*` se integran a `main` con merge commit (`--no-ff`) y retro-fusión a `develop`.
 
 ---
 
 ## 🚢 Despliegue en Producción
 
-Para desplegar en servidores Linux, contenedores Docker o plataformas PaaS:
-
-1. **Variables de Entorno**: Establece `DJANGO_SETTINGS_MODULE=config.settings.production`, `DJANGO_DEBUG=False`, `DJANGO_SECRET_KEY` y `DATABASE_URL=postgresql://...`.
-2. **Compilar Assets**: Ejecuta `npm run build:css` y luego `uv run python manage.py collectstatic --noinput`.
-3. **Servidor WSGI**: Inicia el proceso con Gunicorn:
+1. Configura las variables de entorno de producción (`DJANGO_SETTINGS_MODULE=config.settings.production`, `DJANGO_DEBUG=False`, `DJANGO_SECRET_KEY`, `DJANGO_ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`, `DATABASE_URL=postgresql://...`).
+2. Instala dependencias de producción sin grupo dev:
    ```bash
+   uv sync --frozen --no-dev
+   ```
+3. Compila el CSS final y recolecta estáticos:
+   ```bash
+   npm ci && npm run build:css
+   uv run python manage.py collectstatic --noinput
+   ```
+4. Ejecuta las migraciones y levanta el servidor WSGI con Gunicorn (y `huey_consumer.py` si habilitas Huey):
+   ```bash
+   uv run python manage.py migrate --noinput
    uv run gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 4
    ```

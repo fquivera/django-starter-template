@@ -1,62 +1,49 @@
 # Project Skills
 
-Agent skills for DjWebmail. Each directory contains one `SKILL.md`; optional
-`references/` files hold detail that is loaded only when needed.
+Layered, low-token skill architecture for a modern **Django + HTMX + Alpine.js + Tailwind CSS 4 + DaisyUI 5** project.
 
 ## Conventions
 
-1. **Directory name = `name` in frontmatter.** No version suffixes; put version
-   data under `metadata:`.
-2. **Frontmatter** must be valid YAML delimited by `---` with `name` and
-   `description`. The description states *when* to use the skill and fits in one
-   paragraph (<= 1024 chars).
-3. **SKILL.md <= 500 lines.** Move depth to `references/` and link it from the
-   body. Long reference files get a short table of contents.
-4. **No placeholders.** No "create the following files" instructions, bracketed
-   filler text, or scaffolds. Files referenced from a skill must exist.
-5. **Write in English**, imperative voice, project-standard commands (`uv run ...`).
-6. **One owner per topic.** Other skills reference the owner instead of
-   restating it. Keep the `## Integration with Other Skills` section at the end.
-7. **No unrelated stacks.** This is a Django + HTMX + Alpine project; do not add
-   framework references for other languages.
+1. **Directory name = `name` in frontmatter.**
+2. **Frontmatter `description` <= 2 lines** stating *what* it covers and *when* to trigger.
+3. **Keep `SKILL.md` lean**; move code templates, long checklists, and component indexes into `references/`.
+4. **Write in English**, imperative voice, `uv run ...` commands, and no unrelated stacks (no DRF for internal UI, no Celery).
+5. **One owner per topic** — cross-reference instead of duplicating.
 
-## Topic ownership
+## Active Skills (`.agents/skills/` — Auto-Discovered, 6 Total)
 
-| Topic | Owner |
+### Core (5)
+
+| Skill | Ownership |
 |---|---|
-| Model design, QuerySets, model vs service boundary | `django-models` |
-| Modular app package structure (models/, views/, forms/, urls/, services/, selectors/) | `django-modular-apps` |
-| Project layout, services/selectors, DRF, caching, signals, middleware | `django-patterns` |
-| Authorization, RBAC, multi-tenancy, and HTMX endpoint security | `django-security-permissions` |
-| Safe schema changes, RunPython data migrations, and zero-downtime | `django-migrations-patterns` |
-| Django Admin performance (zero N+1), autocomplete, and bulk actions | `django-admin-expert` |
-| Settings split, Docker, requirements, production checklist | `django-infrastructure` |
-| Broad Django reference (ORM, DRF, security, deploy, tests) | `django-expert` |
-| Forms and validation | `django-forms` |
-| Template inheritance, partials, tags | `django-templates` |
-| HTMX interaction model, Alpine.js | `htmx-alpine` |
-| Django-specific HTMX conventions (CSRF, `HX-Request`, 422) | `htmx-patterns` |
-| Reusable UI components (modals, active search, OOB, inline edit) | `django-htmx-components` |
-| pytest, factories, TDD | `pytest-django-patterns` |
-| Background tasks | `celery-patterns` |
-| Management-command introspection | `django-extensions` |
-| Lint/type/test audit | `code-quality` |
-| Root-cause debugging method | `systematic-debugging` |
-| Branching, releases, hotfixes | `gitflow` |
-| Commit message format | `conventional-commits` |
-| CI/CD workflows and repository config | `github-actions` |
-| User-facing text, translations, locales | `i18n` |
-| Settings, environment variables, preferences, anti-hardcoding | `configuration` |
+| `django-architecture` | Layering (`models`/`services`/`selectors`/`views`), modular app packages, settings & anti-hardcoding |
+| `django-models-migrations` | Domain models, N+1-free QuerySets, DB constraints, PostgreSQL zero-downtime migrations |
+| `django-views-forms-security` | Thin views, `ModelForm`/formsets, HTMX HTTP 200 form errors, RBAC/IDOR scoping, i18n baseline |
+| `django-testing-quality` | `pytest-django` TDD, HTMX/IDOR/Huey test conventions, Ruff/pytest Quality Gate |
+| `git-workflow` | GitFlow branches/releases and Conventional Commits |
 
-Load order for a new feature:
+### Frontend Hypermedia/UI (1 Consolidated Skill)
 
-1. `django-patterns` + `django-modular-apps` (where the code goes and how it is organized)
-2. `django-models` + `django-security-permissions` + `django-forms` (domain, row-level security, and input)
-3. `django-templates` + `htmx-patterns` + `htmx-alpine` + `django-htmx-components` (UI and dynamic interactions)
-4. `django-admin-expert` (backoffice registration and query optimization)
-5. `django-migrations-patterns` (safe schema evolution and reversible migrations)
-6. `i18n` (any user-facing text) + `configuration` (any new setting or literal)
-7. `pytest-django-patterns` (tests)
-8. `django-infrastructure` (only when touching deploy plumbing)
-9. `gitflow` + `conventional-commits` before opening the PR
-10. `github-actions` when a CI check fails or a workflow changes
+| Skill | Ownership |
+|---|---|
+| `django-hypermedia-ui` | Django templates/partials, HTMX + Alpine.js boundaries, Tailwind CSS 4 + DaisyUI 5 components/tokens, inline Heroicons SVGs |
+
+## On-Demand Skills (`.agents/skills-ondemand/` — 0 Tokens by Default)
+
+Read explicitly only when working on these specialized topics:
+
+- `huey-patterns/SKILL.md` — Huey + Redis async and periodic tasks (preferred over Celery)
+- `django-infrastructure/SKILL.md` — Docker multi-stage, Gunicorn, Compose, WhiteNoise, Tailwind 4 build, CSP headers
+- `django-admin-expert/SKILL.md` — Django Admin N+1 elimination, autocomplete, bulk actions, dynamic permissions
+- `github-actions/SKILL.md` — CI/CD workflows, CSS drift check, branch policy, releases
+- `i18n/SKILL.md` — Translation catalogs (`.po`/`.mo`), `makemessages`/`compilemessages`, locale formatting
+- `systematic-debugging/SKILL.md` — Four-phase root-cause debugging methodology
+
+## Feature Load Order
+
+1. `django-architecture` (where code lives and configuration rules)
+2. `django-models-migrations` + `django-views-forms-security` (models, scoped queries, views, forms, permissions)
+3. `django-hypermedia-ui` (only when editing HTML templates, HTMX partials, Alpine state, or DaisyUI styles)
+4. `django-testing-quality` (TDD tests and mandatory Quality Gate)
+5. `git-workflow` (Conventional Commits, branch rules, PRs)
+6. `.agents/skills-ondemand/*` (only when touching async tasks, Admin, Docker/CI, i18n catalogs, or deep debugging)
