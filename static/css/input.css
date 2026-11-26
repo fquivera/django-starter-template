@@ -1,18 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Custom utility or animation classes if needed */
+@plugin "daisyui" {
+  themes: corporate --default, emerald, winter, light, dark --prefersdark, night, synthwave;
+}
+
+@source "../../templates/**/*.html";
+@source "../../apps/**/*.py";
+@source "../../static/js/**/*.js";
+
 [x-cloak] {
-    display: none !important;
+  display: none !important;
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .htmx-indicator {
-    opacity: 0;
-    transition: opacity 200ms ease-in;
+  opacity: 0;
+  transition: opacity 200ms ease-in;
 }
 
 .htmx-request .htmx-indicator,
 .htmx-request.htmx-indicator {
-    opacity: 1;
+  opacity: 1;
 }
