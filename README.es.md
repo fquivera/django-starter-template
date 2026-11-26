@@ -17,6 +17,14 @@ Diseñada además con una **arquitectura de Skills en 2 capas optimizada para Ag
 
 ---
 
+## 📸 Vista Previa
+
+| Tema Claro (`corporate`) | Tema Oscuro (`night`) |
+|---|---|
+| ![Vista Previa Tema Claro](./docs/images/demo-light.jpeg) | ![Vista Previa Tema Oscuro](./docs/images/demo-dark.jpeg) |
+
+---
+
 ## 🎯 Características Principales
 
 - **Gestión Rápida con `uv`**: Resolución reproducible de dependencias y grupos `dev` en [`pyproject.toml`](./pyproject.toml) + `uv.lock`.
@@ -59,6 +67,7 @@ django-starter-template/
 │   └── users/                      # Custom User Model & Admin
 ├── common/                         # Utilidades transversales y helpers compartidos
 ├── config/                         # Configuración del proyecto (settings/, urls.py, wsgi/asgi)
+├── docs/images/                    # Capturas de vista previa del README (temas claro y oscuro)
 ├── static/
 │   ├── css/
 │   │   ├── input.css               # Fuente Tailwind CSS 4 + DaisyUI 5 (@plugin)
