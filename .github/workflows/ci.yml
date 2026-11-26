@@ -50,6 +50,11 @@ jobs:
       - name: Verify compiled CSS has no drift
         run: git diff --exit-code -- static/css/dist/output.css
 
+      - name: Validate Docker Compose config
+        run: |
+          docker compose config --quiet
+          docker compose --profile async config --quiet
+
   django:
     name: Django Checks
     runs-on: ubuntu-latest
