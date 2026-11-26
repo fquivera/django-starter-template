@@ -1,5 +1,6 @@
 # Django Fullstack Starter Template
 
+[![CI](https://github.com/fquivera/django-starter-template/actions/workflows/ci.yml/badge.svg)](https://github.com/fquivera/django-starter-template/actions/workflows/ci.yml)
 [![Django 5.2 LTS](https://img.shields.io/badge/Django-5.2%20LTS-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![HTMX 2.0](https://img.shields.io/badge/HTMX-2.0-336699?logo=htmx&logoColor=white)](https://htmx.org/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -34,6 +35,7 @@ Diseñada además con una **arquitectura de Skills en 2 capas optimizada para Ag
 
 ```text
 django-starter-template/
+├── .github/                        # CI/CD (GitHub Actions), Dependabot y templates de Issues/PR
 ├── .agents/
 │   ├── skills/                     # 6 Skills activas (Core + Frontend consolidado)
 │   │   ├── README.md
@@ -67,6 +69,9 @@ django-starter-template/
 │   ├── components/                 # _navbar.html, _modal_shell.html, _toast_container.html
 │   └── pages/                      # home.html y partials/ (_counter_box.html, _modal_demo.html)
 ├── AGENTES.md                      # Reglas arquitectónicas y Quality Gate para Agentes IA
+├── CHANGELOG.md                    # Historial de versiones (Keep a Changelog + SemVer)
+├── CONTRIBUTING.md                 # Guía de contribución (GitFlow + Conventional Commits)
+├── SECURITY.md                     # Política de seguridad y reporte responsable
 ├── manage.py
 ├── package.json                    # Tailwind CSS 4 CLI + DaisyUI 5
 ├── pyproject.toml                  # Dependencias Python, Ruff y pytest
@@ -173,6 +178,8 @@ Este repositorio sigue una estructura modular de bajo consumo para asistentes co
 ---
 
 ## 🔀 Flujo de Contribución (GitFlow + Conventional Commits)
+
+Consulta las reglas completas en [`CONTRIBUTING.md`](./CONTRIBUTING.md) y la política de reporte responsable en [`SECURITY.md`](./SECURITY.md).
 
 1. Crea una rama desde `develop`:
    ```bash
