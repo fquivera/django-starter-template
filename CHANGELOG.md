@@ -4,6 +4,17 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/), y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.3.1] - 2026-11-26
+
+### Fixed
+- Migrado `templates/components/_modal_shell.html` a `<dialog class="modal">` nativo de DaisyUI 5 con `<form method="dialog" class="modal-backdrop">` y restauración limpia vía `<template x-ref="loadingTemplate">`, corrigiendo el cierre visual inmediato tras la transición de Alpine.
+- Alineado el selector de temas en `templates/components/_navbar.html` con `dropdown-open` / `dropdown-close` de DaisyUI 5.
+- Agregado `source(none)` en `static/css/input.css` para compilaciones CSS 100% deterministas (reduciendo `static/css/dist/output.css` de 359 KB a 95 KB y eliminando falsos positivos de escaneo).
+- Agregados tests de regresión del modal en `apps/core/tests.py`.
+
+### Security & Dependencies
+- Actualizado `django` de `5.2.18` a `5.2.19` (parche de seguridad CVE de Django 5.2 LTS), `gunicorn` `26.2.0 → 27.0.1`, `ruff` `0.17.3 → 0.17.6` y GitHub Actions (`checkout`, `setup-uv`, `setup-node` a `v7`).
+
 ## [0.3.0] - 2026-11-26
 
 ### Added
@@ -46,6 +57,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 ### Added
 - Lanzamiento inicial de la plantilla **Django + HTMX + DaisyUI + Alpine.js** (`6f5b69d`) con `uv`, settings divididos por entorno (`config/settings/`), `apps.users.User`, demos HTMX/OOB/modal, `pytest-django` y `ruff`.
 
+[0.3.1]: https://github.com/fquivera/django-starter-template/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/fquivera/django-starter-template/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/fquivera/django-starter-template/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/fquivera/django-starter-template/releases/tag/v0.1.0
