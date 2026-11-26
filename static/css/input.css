@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 
 @plugin "daisyui" {
   themes: corporate --default, emerald, winter, light, dark --prefersdark, night, synthwave;
