@@ -6,8 +6,8 @@
 
 | Versión | Estado | Base Django |
 |---|---|---|
-| `0.2.x` | Soportada | Django 5.2 LTS |
-| `< 0.2.0` | No soportada | — |
+| `0.3.x` | Soportada | Django 5.2 LTS |
+| `< 0.3.0` | No soportada | — |
 
 ## Reportar una Vulnerabilidad
 
