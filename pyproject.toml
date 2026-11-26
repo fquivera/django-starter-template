@@ -1,11 +1,11 @@
 [project]
 name = "django-starter-template"
-version = "0.1.0"
+version = "0.2.0"
 description = "Production-ready Django + HTMX + DaisyUI + Alpine.js starter template"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "django>=5.1.0,<6.0.0",
+    "django>=5.2.0,<5.3.0",
     "django-environ>=0.11.2",
     "whitenoise[brotli]>=6.8.2",
     "gunicorn>=23.0.0",
