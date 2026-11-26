@@ -1,20 +1,22 @@
-# Política de Seguridad (`SECURITY.md`)
+# Security Policy (`SECURITY.md`)
 
-## Versiones Soportadas
+🌐 Language: **English** | [Español](./SECURITY.es.md)
 
-| Versión | Estado | Base Django |
+## Supported Versions
+
+| Version | Status | Django Base |
 |---|---|---|
-| `0.2.x` | Soportada | Django 5.2 LTS |
-| `< 0.2.0` | No soportada | — |
+| `0.2.x` | Supported | Django 5.2 LTS |
+| `< 0.2.0` | Unsupported | — |
 
-## Reportar una Vulnerabilidad
+## Reporting a Vulnerability
 
-Por favor, **no reportes vulnerabilidades de seguridad a través de Issues públicos**.
+Please **do not report security vulnerabilities through public GitHub Issues**.
 
-1. Utiliza la pestaña **Security → Advisories → Report a vulnerability** (*Private Vulnerability Reporting*) de este repositorio en GitHub.
-2. Incluye:
-   - Descripción clara del problema y su impacto potencial.
-   - Pasos mínimos para reproducirlo o prueba de concepto.
-   - Versión o commit afectado.
+1. Use this repository's **Security → Advisories → Report a vulnerability** (*Private Vulnerability Reporting*) workflow on GitHub.
+2. Include:
+   - A clear description of the vulnerability and its potential impact.
+   - Minimal steps to reproduce or a proof of concept.
+   - The affected version or commit hash.
 
-Nos comprometemos a acusar recibo lo antes posible y coordinar una corrección antes de divulgar detalles públicamente.
+We aim to acknowledge reports promptly and coordinate a fix before public disclosure.
