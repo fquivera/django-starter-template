@@ -14,6 +14,8 @@ Keep `.env.example`, `config/settings/base.py`, and this table synchronized:
 | `DJANGO_ALLOWED_HOSTS` | prod | `127.0.0.1,localhost` | Comma-separated allowed hostnames |
 | `DATABASE_URL` | prod | `sqlite:///db.sqlite3` in dev | PostgreSQL / DB DSN parsed via `env.db()` |
 | `CSRF_TRUSTED_ORIGINS` | prod | `http://localhost:8000,http://127.0.0.1:8000` | Comma-separated HTTPS origins |
+| `DJANGO_LANGUAGE_CODE` | no | `es-ve` | Default active language code |
+| `DJANGO_TIME_ZONE` | no | `America/Caracas` | Default application time zone |
 | `EMAIL_BACKEND` | no | `console.EmailBackend` in dev | Email transport backend |
 | `REDIS_URL` | optional | `redis://localhost:6379/0` | Cache and Huey task queue broker (when enabled) |
 | `HUEY_IMMEDIATE` | optional | `False` (`True` in test) | Run Huey tasks synchronously without a worker |
