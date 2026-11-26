@@ -92,8 +92,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = "es-ve"
-TIME_ZONE = "America/Caracas"
+LANGUAGE_CODE = env.str("DJANGO_LANGUAGE_CODE", default="es-ve")
+TIME_ZONE = env.str("DJANGO_TIME_ZONE", default="America/Caracas")
 USE_I18N = True
 USE_TZ = True
 

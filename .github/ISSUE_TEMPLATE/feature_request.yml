@@ -1,0 +1,38 @@
+name: Feature Request
+description: Propón una mejora para la plantilla, la configuración o las skills de IA.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¿Tienes una idea para mejorar esta plantilla? Cuéntanos el problema que resuelve y cómo encaja en el stack.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o motivación
+      description: Qué necesidad de desarrollo o producción cubre esta mejora.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Solución propuesta
+      description: Describe el cambio esperado manteniendo el enfoque minimalista y genérico del starter.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área principal afectada
+      options:
+        - Backend / Django 5.2 LTS
+        - Frontend (HTMX / Alpine / Tailwind 4 / DaisyUI 5)
+        - Skills de Agentes IA (.agents/)
+        - CI/CD / Docker / Tooling
+        - Documentación
+    validations:
+      required: true

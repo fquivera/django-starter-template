@@ -11,8 +11,8 @@ def test_custom_user_creation():
         username="testuser",
         email="test@example.com",
         password="secretpassword123",
-        organization="F&S Transport",
+        organization="Acme Corp",
     )
     assert user.pk is not None
-    assert user.organization == "F&S Transport"
+    assert user.organization == "Acme Corp"
     assert str(user) == "testuser"

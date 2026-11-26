@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: "uv"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "build(deps)"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      node-dependencies:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "build(deps)"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "ci(deps)"
